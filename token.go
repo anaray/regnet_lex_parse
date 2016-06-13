@@ -20,11 +20,11 @@ const eof = rune(0)
 type Position int
 
 type Token struct {
-  Type TokenType
-	Pos Position
-  Text string
+	Type TokenType
+	Pos  Position
+	Text string
 }
 
 func (t Token) String() string {
-		return t.Text
+	return t.Text
 }

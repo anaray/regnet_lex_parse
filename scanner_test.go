@@ -1,13 +1,13 @@
 package regnet_lex_parse
 
 import (
+	"fmt"
+	"strings"
 	"testing"
-  "strings"
-  "fmt"
 )
 
 var s *Scanner
 
-func TestScanner(t *testing.T){
-  s = NewScanner(strings.NewReader("NAME=%{NAME_DEF}"))
+func TestScanner(t *testing.T) {
+	s = NewScanner(strings.NewReader("NAME=%{NAME_DEF}"))
 }
