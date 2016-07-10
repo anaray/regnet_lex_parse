@@ -1,7 +1,6 @@
 package regnet_lex_parse
 
 import (
-	"fmt"
 	"strings"
 	"testing"
 )
@@ -33,5 +32,15 @@ func TestScanner(t *testing.T) {
 
 	if token.Type != EOF {
 		t.Error("expected token type EOF")
+	}
+
+	s = NewScanner(strings.NewReader("NAME=%{NAME_DEF}"))
+	ch := s.Start()
+	count := 0
+	for range ch {
+		count++
+	}
+	if count != 6 {
+		t.Error("expected 6 tokens")
 	}
 }

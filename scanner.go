@@ -7,14 +7,27 @@ import (
 
 type Scanner struct {
 	reader  *bufio.Reader
-	Channel chan Token
 }
 
 func NewScanner(r io.Reader) *Scanner {
 	return &Scanner{
 		reader:  bufio.NewReader(r),
-		Channel: make(chan Token),
 	}
+}
+
+func (s *Scanner) Start() <-chan Token {
+	tokens := make(chan Token)
+	go func() {
+		for {
+			if token := s.Scan(); token.Type == EOF {
+				break
+			} else {
+				tokens <- token
+			}
+		}
+		close(tokens)
+	}()
+	return tokens
 }
 
 func (s *Scanner) Scan() (tok Token) {
@@ -62,8 +75,4 @@ func (s *Scanner) peek() rune {
 	}
 	s.reader.UnreadRune()
 	return ch
-}
-
-func (s *Scanner) emit(t Token) {
-	s.Channel <- t
 }
