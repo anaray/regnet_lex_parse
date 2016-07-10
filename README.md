@@ -1,17 +1,21 @@
 # regnet_lex_parse
 lexing &amp; parsing library for regnet definitions.
 
+```
 Tokens:
 
-IILEGAL
-KEY
-EQUALS
-PERCENT
-START_BRACE
-END_BRACE
-REG_TEXT
-WHITE_SPACE
-EOF
+1. IILEGAL
+2. KEY
+3. EQUALS
+4. PERCENT
+5. START_BRACE
+6. END_BRACE
+7. REG_TEXT
+8. WHITE_SPACE
+9. EOF
+```
 
 Example REGNET definition
+```
 NAME=%{NAME_DEF}
+```
