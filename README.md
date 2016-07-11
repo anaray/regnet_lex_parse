@@ -15,7 +15,4 @@ Tokens:
 9. EOF
 ```
 
-Example REGNET definition
-```
-NAME=%{NAME_DEF}
-```
+more about regnets https://github.com/anaray/regnet
