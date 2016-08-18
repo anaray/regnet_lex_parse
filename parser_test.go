@@ -2,11 +2,13 @@ package regnet_lex_parse
 
 import(
   "testing"
-  "fmt"
-  "strings"
+  ///"fmt"
+  //"strings"
 )
 
 func TestParser(t *testing.T) {
-    p := NewParser(strings.NewReader("NAME=%{NAME_DEF}"))
-    fmt.Println(p)
+    //parser := NewParser(strings.NewReader("NAME=%{NAME_DEF}"))
+    //err, result := parser.Start()
+
+    //fmt.Println(p)
 }

@@ -25,6 +25,9 @@ func (s *Scanner) scanValidCharacters() (token Token) {
 	var buf bytes.Buffer
 	for {
 		if ch := s.read(); ch == eof {
+			if buf.Len() > 0 {
+				return Token{Type: REG_TEXT, Text: buf.String()}
+			}
 			return Token{Type: EOF, Text: string(ch)}
 		} else if isAlphabet(ch) {
 			buf.WriteRune(ch)

@@ -43,4 +43,15 @@ func TestScanner(t *testing.T) {
 	if count != 6 {
 		t.Error("expected 6 tokens")
 	}
+
+	s = NewScanner(strings.NewReader("NAME=%{FIRST_NAME}%{LAST_NAME"))
+	ch = s.Start()
+	count = 0
+	for range ch {
+		count++
+	}
+	if count != 9 {
+		t.Error("expected 8 tokens")
+	}
+
 }
