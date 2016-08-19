@@ -6,12 +6,12 @@ import (
 )
 
 type Scanner struct {
-	reader  *bufio.Reader
+	reader *bufio.Reader
 }
 
 func NewScanner(r io.Reader) *Scanner {
 	return &Scanner{
-		reader:  bufio.NewReader(r),
+		reader: bufio.NewReader(r),
 	}
 }
 

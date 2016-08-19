@@ -46,12 +46,49 @@ func TestScanner(t *testing.T) {
 
 	s = NewScanner(strings.NewReader("NAME=%{FIRST_NAME}%{LAST_NAME"))
 	ch = s.Start()
-	count = 0
-	for range ch {
-		count++
-	}
-	if count != 9 {
-		t.Error("expected 8 tokens")
+
+	token = <-ch
+	if token.Type != KEY && token.Text != "NAME" {
+		t.Error("expected token type KEY with value NAME")
 	}
 
+	token = <-ch
+	if token.Type != EQUALS && token.Text != "=" {
+		t.Error("expected token type EQUALS with value '=''")
+	}
+
+	token = <-ch
+	if token.Type != PERCENT && token.Text != "%" {
+		t.Error("expected token type PERCENT with value '%''")
+	}
+
+	token = <-ch
+	if token.Type != START_BRACE && token.Text != "{" {
+		t.Error("expected token type START_BRACE with value '{''")
+	}
+
+	token = <-ch
+	if token.Type != REG_TEXT && token.Text != "FIRST_NAME" {
+		t.Error("expected token type REG_TEXT with value 'FIRST_NAME''")
+	}
+
+	token = <-ch
+	if token.Type != REG_TEXT && token.Text != "}" {
+		t.Error("expected token type END_BRACE with value '}''")
+	}
+
+	token = <-ch
+	if token.Type != PERCENT && token.Text != "%" {
+		t.Error("expected token type PERCENT with value '%''")
+	}
+
+	token = <-ch
+	if token.Type != START_BRACE && token.Text != "{" {
+		t.Error("expected token type START_BRACE with value '{''")
+	}
+
+	token = <-ch
+	if token.Type != REG_TEXT && token.Text != "LAST_NAME" {
+		t.Error("expected token type REG_TEXT with value 'LAST_NAME''")
+	}
 }
